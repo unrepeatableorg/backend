@@ -16,6 +16,25 @@ abstract class AbstractApiPage extends AbstractPage {
     protected function generateError($httpCode)
     {
         http_response_code($httpCode);
+        exit;
+    }
+
+    protected function generateResponseCode($httpCode)
+    {
+        http_response_code($httpCode);
+        exit;
+    }
+
+    protected function generateNotImplementedResponse()
+    {
+        http_response_code(501);
+        exit;
+    }
+
+    protected function generateNotAllowedResponse()
+    {
+        http_response_code(403);
+        exit;
     }
 
     protected function getRequestMethod()

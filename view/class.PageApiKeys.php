@@ -16,9 +16,28 @@ class PageApiKeys extends AbstractApiPage
 
     const PATH = "/keys$";
 
+    private function routeRequestMethod()
+    {
+        $requestMethod = $this->getRequestMethod();
+        switch( $requestMethod )
+        {
+        case 'GET':
+            $this->handleGetRequest();
+            break;
+        default:
+            $this->generateNotAllowedResponse();
+        }
+    }
+
+    private function handleGetRequest()
+    {
+        // TOOD Implement.
+        $this->generateNotImplementedResponse();
+    }
+
     public function __construct()
     {
-        // TODO Implement.
+        $this->routeRequestMethod();
     }
 
     public function draw()

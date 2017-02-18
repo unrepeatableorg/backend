@@ -16,9 +16,27 @@ class PageApiPostsDetail extends AbstractApiPage
 
     const PATH = "/posts/[0-9]+$";
 
+    private function routeRequestMethod()
+    {
+        $requestMethod = $this->getRequestMethod();
+        switch( $requestMethod )
+        {
+        case 'GET':
+            $this->handleGetRequest();
+            break;
+        default:
+            $this->generateNotAllowedResponse();
+        }
+    }
+
+    private function handleGetRequest()
+    {
+        $this->generateNotImplementedResponse();
+    }
+
     public function __construct()
     {
-        // TODO Implement.
+        $this->routeRequestMethod();
     }
 
     public function draw()
