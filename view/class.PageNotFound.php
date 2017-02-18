@@ -17,16 +17,12 @@ class PageNotFound extends AbstractPage
 
     const PATH = "/404$";
 
-    const TITLE = "Page not found";
-
     public function __construct()
     {
-        $this->setTitle(self::TITLE);
+        header('HTTP/1.0 404 Not Found');
     }
 
     public function draw()
-    {
-        // TODO Implement.
-    }
+    {}
 
 }

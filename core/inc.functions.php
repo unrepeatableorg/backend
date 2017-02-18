@@ -66,48 +66,8 @@ function redirectInternally($uri)
     redirect($protocol . $host . $base . $uri);
 }
 
-function redirect($url)
-{
-    header("Location: " . $url);
-    exit;
-}
-
 function placeResource($file) {
     echo getHttpRoot() . $file;
-}
-
-function datetimeOrdinalSuffix($number)
-{
-    $number = $number % 100;
-    if($number < 11 || $number > 13)
-    {
-        switch($number % 19)
-        {
-        case 1: return 'st';
-        case 2: return 'nd';
-        case 3: return 'rd';
-        }
-    }
-
-    return 'th';
-}
-
-function placeStyleSheet($stylesheet)
-{
-    $source = getHttpRoot() . "theme/css/" . $stylesheet;
-
-    echo '<link rel="stylesheet" media="screen" href="' . $source. '">';
-}
-
-function placeScript($script)
-{
-    // Check if the specified script is an absolute script.
-    if( substr($script, 0, 4) === "http" )
-        $source = $script;
-    else
-        $source = getHttpRoot() . "theme/js/" . $script;
-
-    echo '<script type="text/javascript" src="' . $source . '"></script>';
 }
 
 function getHttpRoot()
@@ -132,5 +92,7 @@ function placeHttpRoot()
 
 function registerPages($router)
 {
-    // TODO Add page registration.
+    // Register "posts" enpoints.
+    $router->registerPage(\Unrepeatable\Page\ApiPosts::PATH,
+                          "\Unrepeatable\Page\ApiPosts");
 }

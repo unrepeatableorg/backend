@@ -17,7 +17,7 @@ class Unrepeatable extends DatabaseApplication
 
     public function __construct()
     {
-        // TODO Implement.
+        // TODO Implement logic here.
     }
 
 }

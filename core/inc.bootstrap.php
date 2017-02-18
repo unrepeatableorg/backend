@@ -13,7 +13,11 @@ require_once "core/inc.functions.php";
 // Register the class autoloader function.
 spl_autoload_register('loadClass');
 
-use \Unrepeatable\Application;
+// Add the Facebook lib.
+require_once 'lib/facebook-sdk-v5/autoload.php';
+
+use \Carbon\Application\Application;
+use \Unrepeatable\Application\Unrepeatable;
 
 $app = new Unrepeatable();
 Application::setInstance($app);
@@ -26,8 +30,10 @@ use \Carbon\Router\Router;
 $router = new Router();
 $app->setRouter($router);
 $router->setBase($app->getConfiguration("base"));
+// Register the default "Page Not Found" page.
 $router->registerPage(\Carbon\Page\PageNotFound::PATH,
                       "\Carbon\Page\PageNotFound");
+
 // Register the application pages.
 registerPages($router);
 // Route the user to the desired page.
