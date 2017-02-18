@@ -11,7 +11,7 @@ namespace Unrepeatable\Page;
 
 use \Carbon\Page\AbstractApiPage;
 
-class ApiPosts extends AbstractApiPage
+class PageApiPosts extends AbstractApiPage
 {
 
     const PATH = "/posts$";

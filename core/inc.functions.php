@@ -93,6 +93,9 @@ function placeHttpRoot()
 function registerPages($router)
 {
     // Register "posts" enpoints.
-    $router->registerPage(\Unrepeatable\Page\ApiPosts::PATH,
-                          "\Unrepeatable\Page\ApiPosts");
+    $router->registerPage(\Unrepeatable\Page\PageApiPosts::PATH,
+                          "\Unrepeatable\Page\PageApiPosts");
+    // Register "keys" enpoints.
+    $router->registerPage(\Unrepeatable\Page\PageApiKeys::PATH,
+                          "\Unrepeatable\Page\PageApiKeys");
 }
