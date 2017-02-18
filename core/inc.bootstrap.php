@@ -8,6 +8,9 @@
  * @since   16 February 2016
  */
 
+// Start the session.
+session_start();
+
 // Load required functions and scripts.
 require_once "core/inc.functions.php";
 // Register the class autoloader function.
