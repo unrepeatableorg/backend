@@ -13,7 +13,7 @@ use \Carbon\Application\Application;
 // BEGIN Configuration. ////////////////////////////////////////////////////////
 
 $conf['host']   = "unrepeatable.org";
-$conf['base']   = "";
+$conf['base']   = "api";
 
 // END Configuration. //////////////////////////////////////////////////////////
 
