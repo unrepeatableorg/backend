@@ -5,6 +5,41 @@
         "version": "0.1"
     },
     "paths": {
+        "/api/keys": {
+            "get": {
+                "tags": [
+                    "All",
+                    "Keys"
+                ],
+                "summary": "Returns details of keys selected by paging.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "lastId",
+                        "in": "query",
+                        "description": "Last id on the previous page, by default this is 0",
+                        "required": false,
+                        "type": "integer",
+                        "default": 0
+                    },
+                    {
+                        "name": "numEntries",
+                        "in": "query",
+                        "description": "Number of entries in the page. By default this value is set to 10, however, a 100 entries limit is enforced.",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the requested keys."
+                    }
+                }
+            }
+        },
         "/api/keys/{keyId}": {
             "get": {
                 "tags": [
