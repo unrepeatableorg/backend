@@ -28,6 +28,29 @@ class PageApiKeysDetail extends AbstractApiPage
         }
     }
 
+    /**
+     * @SWG\Get(
+     *     path="/api/keys/{keyId}",
+     *     summary="Returns the details of the specified key.",
+     *     tags={"All","Keys"},
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *         in="path",
+     *         name="keyId",
+     *         description="Unique integer identifier of the key.",
+     *         required=true,
+     *         type="integer"
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Returns the details of the specified key."
+     *     ),
+     *     @SWG\Response(
+     *         response=404,
+     *         description="Returns 404 when the specified key could not be found."
+     *     )
+     * )
+     */
     private function handleGetRequest()
     {
         // TODO Implement.

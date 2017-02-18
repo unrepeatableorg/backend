@@ -1,0 +1,39 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Unrepeatable",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/keys/{keyId}": {
+            "get": {
+                "tags": [
+                    "All",
+                    "Keys"
+                ],
+                "summary": "Returns the details of the specified key.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "keyId",
+                        "in": "path",
+                        "description": "Unique integer identifier of the key.",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the details of the specified key."
+                    },
+                    "404": {
+                        "description": "Returns 404 when the specified key could not be found."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
