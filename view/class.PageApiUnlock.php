@@ -36,7 +36,7 @@ class PageApiUnlock extends AbstractApiPage
      *     summary="Stores the key identifier in a session variable for later use.",
      *     tags={"All", "Keys"},
      *     @SWG\Parameter(
-     *         in="body",
+     *         in="formData",
      *         name="key",
      *         description="Unique key identifier.",
      *         required=true,

@@ -79,7 +79,7 @@
                 "parameters": [
                     {
                         "name": "key",
-                        "in": "body",
+                        "in": "formData",
                         "description": "Unique key identifier.",
                         "required": true,
                         "type": "string"
