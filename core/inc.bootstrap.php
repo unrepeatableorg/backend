@@ -13,11 +13,9 @@ require_once "core/inc.functions.php";
 // Register the class autoloader function.
 spl_autoload_register('loadClass');
 
-use \Carbon\Application\Application;
+use \Unrepeatable\Application;
 
-// Allocate the desired application.
-// TODO Write your own application class (see Application or DatabaseApplication).
-$app = null;
+$app = new Unrepeatable();
 Application::setInstance($app);
 parseConfiguration("Database");
 parseConfiguration("Main");
