@@ -31,7 +31,7 @@ class PageApiPostsDetail extends AbstractApiPage
 
     /**
      * @SWG\Get(
-     *     path="api/posts/{postId}",
+     *     path="/api/posts/{postId}",
      *     summary="Returns the details of a specific post.",
      *     tags={"All", "Posts"},
      *     produces={"application/json"},
