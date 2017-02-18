@@ -57,6 +57,10 @@ class Router
     private function cleanPath($path)
     {
         $path = substr($path, $this->mBaseLength);
+        // Check if the path contains a ?, and if yes, remove it.
+        $index = strpos($path, "?");
+        if( $index !== false )
+            $path = substr($path, 0, $index);
         $length = strlen($path);
         if( $length === 0 ) {
             $path = "/";
