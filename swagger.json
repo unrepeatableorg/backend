@@ -68,6 +68,32 @@
                     }
                 }
             }
+        },
+        "/api/unlock": {
+            "post": {
+                "tags": [
+                    "All",
+                    "Keys"
+                ],
+                "summary": "Stores the key identifier in a session variable for later use.",
+                "parameters": [
+                    {
+                        "name": "key",
+                        "in": "body",
+                        "description": "Unique key identifier.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Stored the key identifier in the current session."
+                    },
+                    "400": {
+                        "description": "Returns this HTTP error if the specified key identifier does not exists, or if the key is terminated."
+                    }
+                }
+            }
         }
     },
     "definitions": {}

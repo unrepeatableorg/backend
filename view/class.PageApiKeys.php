@@ -69,8 +69,6 @@ class PageApiKeys extends AbstractApiPage
     }
 
     public function draw()
-    {
-        echo "KEYS enpoint called.";
-    }
+    {}
 
 }

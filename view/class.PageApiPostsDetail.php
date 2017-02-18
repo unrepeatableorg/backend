@@ -40,8 +40,6 @@ class PageApiPostsDetail extends AbstractApiPage
     }
 
     public function draw()
-    {
-        echo "Calling posts detail endpoint.";
-    }
+    {}
 
 }

@@ -63,8 +63,6 @@ class PageApiKeysDetail extends AbstractApiPage
     }
 
     public function draw()
-    {
-        echo "Calling key detail endpoint.";
-    }
+    {}
 
 }

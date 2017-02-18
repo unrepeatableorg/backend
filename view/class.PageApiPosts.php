@@ -50,8 +50,6 @@ class PageApiPosts extends AbstractApiPage
     }
 
     public function draw()
-    {
-        echo "POSTS enpoint called.";
-    }
+    {}
 
 }

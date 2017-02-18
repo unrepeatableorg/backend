@@ -42,8 +42,6 @@ class PageApiCurrentKey extends AbstractApiPage
     }
 
     public function draw()
-    {
-        // TODO Implement.
-    }
+    {}
 
 }
