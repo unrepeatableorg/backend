@@ -30,10 +30,32 @@ class PageApiCurrentKey extends AbstractApiPage
         }
     }
 
+    /**
+     * @SWG\Get(
+     *     path="/api/keys/current",
+     *     summary="Returns all information about the key which is currently in use by the authenticated user.",
+     *     tags={"All", "Keys"},
+     *     produces={"application/json"},
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Returns the details of the key which is currently in use."
+     *     ),
+     *     @SWG\Response(
+     *         response="404",
+     *         description="Returns 404 if no key is in use at the moment."
+     *     )
+     * )
+     */
     private function handleGetRequest()
     {
         // TODO Implement.
-        $this->generateNotImplementedResponse();
+
+        // Check if the session contains the key variable.
+        if( isset($_SESSION['key']) ) {
+            $this->generateNotFoundResponse();
+        } else {
+            $this->generateNotImplementedResponse();
+        }
     }
 
     public function __construct()

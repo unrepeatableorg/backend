@@ -5,6 +5,76 @@
         "version": "0.1"
     },
     "paths": {
+        "/api/posts": {
+            "get": {
+                "tags": [
+                    "All",
+                    "Posts"
+                ],
+                "summary": "Returns details of posts selected by paging.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "lastId",
+                        "in": "query",
+                        "description": "Last id on the previous page, by default this is 0",
+                        "required": false,
+                        "type": "integer",
+                        "default": 0
+                    },
+                    {
+                        "name": "numEntries",
+                        "in": "query",
+                        "description": "Number of entries in the page. By default this value is set to 10, however, a 100 entries limit is enforced.",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the requested posts."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "All",
+                    "Posts"
+                ],
+                "summary": "Add a posts with the specified details.",
+                "responses": {
+                    "200": {
+                        "description": "The post has been succesfully created."
+                    },
+                    "409": {
+                        "description": "Could not create the post with the specified details."
+                    }
+                }
+            }
+        },
+        "/api/keys/current": {
+            "get": {
+                "tags": [
+                    "All",
+                    "Keys"
+                ],
+                "summary": "Returns all information about the key which is currently in use by the authenticated user.",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the details of the key which is currently in use."
+                    },
+                    "404": {
+                        "description": "Returns 404 if no key is in use at the moment."
+                    }
+                }
+            }
+        },
         "/api/keys": {
             "get": {
                 "tags": [
@@ -65,6 +135,35 @@
                     },
                     "404": {
                         "description": "Returns 404 when the specified key could not be found."
+                    }
+                }
+            }
+        },
+        "api/posts/{postId}": {
+            "get": {
+                "tags": [
+                    "All",
+                    "Posts"
+                ],
+                "summary": "Returns the details of a specific post.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "description": "Unique integer identifier of the post.",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The details of the post are returned."
+                    },
+                    "404": {
+                        "description": "The specified post-id could not be retrieved."
                     }
                 }
             }

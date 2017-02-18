@@ -37,6 +37,18 @@ abstract class AbstractApiPage extends AbstractPage {
         exit;
     }
 
+    protected function generateFailureResponse()
+    {
+        http_response_code(409);
+        exit;
+    }
+
+    protected function generateNotFoundResponse()
+    {
+        http_response_code(404);
+        exit;
+    }
+
     protected function generateForbiddenResponse()
     {
         http_response_code(403);
