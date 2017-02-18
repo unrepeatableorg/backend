@@ -32,8 +32,11 @@ class PageApiUnlock extends AbstractApiPage
 
     private function handlePostRequest()
     {
-        // TODO Implement.
-        $this->generateNotImplementedResponse();
+        // Check if the key property is specified.
+        if( isset($_POST['key']) )
+            $_SESSION['key'] = $_POST['key'];
+        else
+            $this->generateBadRequest();
     }
 
     public function __construct()
@@ -42,8 +45,6 @@ class PageApiUnlock extends AbstractApiPage
     }
 
     public function draw()
-    {
-        echo "UNLOCK endpoint called.";
-    }
+    {}
 
 }

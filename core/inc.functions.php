@@ -102,4 +102,7 @@ function registerPages($router)
                           "\Unrepeatable\Page\PageApiKeys");
     $router->registerPage(\Unrepeatable\Page\PageApiKeysDetail::PATH,
                           "\Unrepeatable\Page\PageApiKeysDetail");
+    // Register "unlock" endpoint.
+    $router->registerPage(\Unrepeatable\Page\PageApiUnlock::PATH,
+                          "\Unrepeatable\Page\PageApiUnlock");
 }
