@@ -3,18 +3,18 @@
 namespace Unrepeatable\Page;
 
 /**
- * Describes all the API endpoints in the 'keys' category.
+ * API endpoint which describes the details of the requested key.
  *
  * @author  Joeri Hermans
- * @since   18 February 2017
+ * @version 18 February 2017
  */
 
 use \Carbon\Page\AbstractApiPage;
 
-class PageApiKeys extends AbstractApiPage
+class PageApiPostsDetail extends AbstractApiPage
 {
 
-    const PATH = "/keys$";
+    const PATH = "/posts/[0-9]+$";
 
     public function __construct()
     {
@@ -23,7 +23,7 @@ class PageApiKeys extends AbstractApiPage
 
     public function draw()
     {
-        echo "KEYS enpoint called.";
+        echo "Calling posts detail endpoint.";
     }
 
 }

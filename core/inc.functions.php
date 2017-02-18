@@ -95,7 +95,11 @@ function registerPages($router)
     // Register "posts" enpoints.
     $router->registerPage(\Unrepeatable\Page\PageApiPosts::PATH,
                           "\Unrepeatable\Page\PageApiPosts");
+    $router->registerPage(\Unrepeatable\Page\PageApiPostsDetail::PATH,
+                          "\Unrepeatable\Page\PageApiPostsDetail");
     // Register "keys" enpoints.
     $router->registerPage(\Unrepeatable\Page\PageApiKeys::PATH,
                           "\Unrepeatable\Page\PageApiKeys");
+    $router->registerPage(\Unrepeatable\Page\PageApiKeysDetail::PATH,
+                          "\Unrepeatable\Page\PageApiKeysDetail");
 }
