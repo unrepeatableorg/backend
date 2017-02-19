@@ -27,6 +27,8 @@ class PageApiKeys extends AbstractApiPage
 
     const DEFAULT_NUM_KEYS = 10;
 
+    const MAX_NUM_ENTRIES = 100;
+
     private function routeRequestMethod()
     {
         $requestMethod = $this->getRequestMethod();
@@ -132,6 +134,8 @@ class PageApiKeys extends AbstractApiPage
         // Check if in-query parameters have been specified.
         $lastId = isset($_GET['lastId']) ? (int) $_GET['lastId'] : self::DEFAULT_LAST_ID;
         $numEntries = isset($_GET['numEntries']) ? (int) $_GET['numEntries'] : self::DEFAULT_NUM_KEYS;
+        // Check if the number of requested entries is larger then the allowed max.
+        $numEntries = ($numEntries > self::MAX_NUM_ENTRIES) ? self::MAX_NUM_ENTRIES;
         // Connect with the database server.
         $application = Application::getInstance();
         $dbHandle = $application->connectToDatabase();
