@@ -96,4 +96,9 @@ abstract class AbstractApiPage extends AbstractPage {
         return json_decode($decodeData, $options);
     }
 
+    public function __construct()
+    {
+        header('Content-Type: application/json');
+    }
+
 }

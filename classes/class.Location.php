@@ -27,7 +27,7 @@ class Location
      */
     private $mName;
 
-    public function __construct($longitude, $latitude, $name="")
+    public function __construct($longitude, $latitude, $name = "")
     {
         $this->mLongitude = $longitude;
         $this->mLatitude = $latitude;

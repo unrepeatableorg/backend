@@ -35,6 +35,11 @@ class Key
     private $mDisabled;
 
     /**
+     * Total distance the key has travelled.
+     */
+    private $mDistance;
+
+    /**
      * Contains the path of locations the key has travelled through.
      */
     private $mPath;
@@ -44,13 +49,14 @@ class Key
      */
     private $mPathLength;
 
-    public function __construct($id, $name, $created, $disabled, $path)
+    public function __construct($id, $name, $created, $disabled, $distance, $path = array())
     {
         $this->mId = $id;
         $this->mName = $name;
         $this->mCreatedTimestamp = $created;
         $this->mDisabled = $disabled;
         $this->mPath = $path;
+        $this->mDistance = $distance;
         $this->mPathLength = count($path);
     }
 
@@ -74,9 +80,20 @@ class Key
         return $this->mDisabled;
     }
 
+    public function getDistance()
+    {
+        return $this->mDistance;
+    }
+
     public function getPath()
     {
         return $this->mPath;
+    }
+
+    public function addPath($location)
+    {
+        $this->mPath[] = $location;
+        ++$this->mPathLength;
     }
 
     public function getPathLength()
@@ -101,6 +118,7 @@ class Key
      *      "name": "alpha",
      *      "disabled": false,
      *      "created": 24893429,
+     *      "distance": 323.434
      *      "path": [
      *      {
      *        "latitude": 23.4343443,
@@ -124,7 +142,7 @@ class Key
             $disabled = "true";
         else
             $disabled = "false";
-        // Fetch tne number of paths.
+        // Fetch the number of paths.
         $pathLength = $this->mPathLength;
 
         $s. = '{';
@@ -132,8 +150,9 @@ class Key
         $s .= '"name":"' . $this->mName . '",';
         $s .= '"disabled":' . $disabled . ',';
         $s .= '"created":' . $this->mCreatedTimestamp . ',';
+        $s .= '"distance":' . $this->mDistance . ',';
         $s .= '"path":[';
-        for($i = 0; $i < $pathLength; ++$i)
+        for( $i = 0; $i < $pathLength; ++$i )
         {
             // Don't append a comma at the start.
             if( $i > 0 )

@@ -60,6 +60,7 @@ class PageApiCurrentKey extends AbstractApiPage
 
     public function __construct()
     {
+        parent::__construct();
         $this->routeRequestMethod();
     }
 
