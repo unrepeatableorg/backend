@@ -55,7 +55,7 @@ abstract class AbstractApiPage extends AbstractPage {
         exit;
     }
 
-    protected function generateBadRequest()
+    protected function generateBadRequestResponse()
     {
         http_response_code(400);
         exit;

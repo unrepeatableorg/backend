@@ -10,7 +10,12 @@ namespace Unrepeatable\Page;
  * @version 18 February 2017
  */
 
+use \Carbon\Application\Application;
 use \Carbon\Page\AbstractApiPage;
+
+use \Unrepeatable\Application\Unrepeatable;
+
+use PDO;
 
 class PageApiUnlock extends AbstractApiPage
 {
@@ -54,12 +59,31 @@ class PageApiUnlock extends AbstractApiPage
      */
     private function handlePostRequest()
     {
+        $validRequest = false;
+
         // Check if the key property is specified.
-        if( isset($_POST['key']) )
-            // TODO Add more validation.
-            $_SESSION['key'] = $_POST['key'];
-        else
-            $this->generateBadRequest();
+        if( isset($_POST['key']) && strlen($_POST['key']) <= 80 )
+        {
+            // Fetch the key secret.
+            $key = $_POST['key'];
+            // Connect with the database server.
+            $application = Application::getInstance();
+            $dbHandle = $application->connectToDatabase();
+            // Unlock the specified key, if it exists.
+            $sql = 'SELECT id FROM `keys` WHERE secret = ? LIMIT 1;';
+            $statement = $dbHandle->prepare($sql);
+            $statement->execute(array($key));
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            if( count($result) == 1 )
+            {
+                // Add the key secret to the session.
+                $_SESSION['key'] = $key;
+                $validRequest = true;
+            }
+        }
+        // Check if a valid request was presented.
+        if( !$validRequest )
+            $this->generateBadRequestResponse();
     }
 
     public function __construct()

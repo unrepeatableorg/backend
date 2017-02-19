@@ -10,7 +10,8 @@ namespace Carbon\Application;
  */
 
 use \Carbon\Application\Application;
-use \PDO;
+
+use PDO;
 
 abstract class DatabaseApplication extends Application
 {
@@ -33,17 +34,19 @@ abstract class DatabaseApplication extends Application
         // Check if a database handle is already available.
         if( $this->mDatabaseHandle == null ) {
             // Fetch all required information.
-            $dbhost = $this->getConfiguration(CONF_DB_HOST);
-            $dbuser = $this->getConfiguration(CONF_DB_USER);
-            $dbpass = $this->getConfiguration(CONF_DB_PASSWORD);
-            $dbdriver = $this->getConfiguration(CONF_DB_DRIVER);
-            $dbschema = $this->getConfiguration(CONF_DB_SCHEMA);
+            $dbhost = $this->getConfiguration(self::CONF_DB_HOST);
+            $dbuser = $this->getConfiguration(self::CONF_DB_USERNAME);
+            $dbpass = $this->getConfiguration(self::CONF_DB_PASSWORD);
+            $dbdriver = $this->getConfiguration(self::CONF_DB_DRIVER);
+            $dbschema = $this->getConfiguration(self::CONF_DB_SCHEMA);
             // Construct the connection string for PDO.
             $connectionString = $dbdriver . ":host=" . $dbhost .
                               ";dbname=" . $dbschema;
             // Connect to the database.
             $this->mDatabaseHandle = new PDO($connectionString, $dbuser, $dbpass);
         }
+
+        return $this->mDatabaseHandle;
     }
 
     public function disconnectFromDatabase()

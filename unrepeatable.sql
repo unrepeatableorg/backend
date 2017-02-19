@@ -10,20 +10,20 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema unrepeatable
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `unrepeatable` ;
+DROP SCHEMA IF EXISTS `m1397_unrepeatable` ;
 
 -- -----------------------------------------------------
 -- Schema unrepeatable
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `unrepeatable` DEFAULT CHARACTER SET utf8 ;
-USE `unrepeatable` ;
+CREATE SCHEMA IF NOT EXISTS `m1397_unrepeatable` DEFAULT CHARACTER SET utf8 ;
+USE `m1397_unrepeatable` ;
 
 -- -----------------------------------------------------
 -- Table `unrepeatable`.`keys`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `unrepeatable`.`keys` ;
+DROP TABLE IF EXISTS `m1397_unrepeatable`.`keys` ;
 
-CREATE TABLE IF NOT EXISTS `unrepeatable`.`keys` (
+CREATE TABLE IF NOT EXISTS `m1397_unrepeatable`.`keys` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `secret` VARCHAR(80) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
@@ -35,34 +35,34 @@ CREATE TABLE IF NOT EXISTS `unrepeatable`.`keys` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `id_UNIQUE` ON `unrepeatable`.`keys` (`id` ASC);
+CREATE UNIQUE INDEX `id_UNIQUE` ON `m1397_unrepeatable`.`keys` (`id` ASC);
 
-CREATE UNIQUE INDEX `identifier_UNIQUE` ON `unrepeatable`.`keys` (`secret` ASC);
+CREATE UNIQUE INDEX `identifier_UNIQUE` ON `m1397_unrepeatable`.`keys` (`secret` ASC);
 
-CREATE UNIQUE INDEX `name_UNIQUE` ON `unrepeatable`.`keys` (`name` ASC);
+CREATE UNIQUE INDEX `name_UNIQUE` ON `m1397_unrepeatable`.`keys` (`name` ASC);
 
 
 -- -----------------------------------------------------
 -- Table `unrepeatable`.`providers`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `unrepeatable`.`providers` ;
+DROP TABLE IF EXISTS `m1397_unrepeatable`.`providers` ;
 
-CREATE TABLE IF NOT EXISTS `unrepeatable`.`providers` (
+CREATE TABLE IF NOT EXISTS `m1397_unrepeatable`.`providers` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `identifier` VARCHAR(80) NOT NULL,
   `name` VARCHAR(80) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `id_UNIQUE` ON `unrepeatable`.`providers` (`id` ASC);
+CREATE UNIQUE INDEX `id_UNIQUE` ON `m1397_unrepeatable`.`providers` (`id` ASC);
 
 
 -- -----------------------------------------------------
 -- Table `unrepeatable`.`users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `unrepeatable`.`users` ;
+DROP TABLE IF EXISTS `m1397_unrepeatable`.`users` ;
 
-CREATE TABLE IF NOT EXISTS `unrepeatable`.`users` (
+CREATE TABLE IF NOT EXISTS `m1397_unrepeatable`.`users` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `fd_id` INT UNSIGNED NOT NULL,
   `profile_picture` TINYTEXT NULL DEFAULT NULL,
@@ -71,15 +71,15 @@ CREATE TABLE IF NOT EXISTS `unrepeatable`.`users` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `user_fb_id_UNIQUE` ON `unrepeatable`.`users` (`fd_id` ASC);
+CREATE UNIQUE INDEX `user_fb_id_UNIQUE` ON `m1397_unrepeatable`.`users` (`fd_id` ASC);
 
 
 -- -----------------------------------------------------
 -- Table `unrepeatable`.`posts`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `unrepeatable`.`posts` ;
+DROP TABLE IF EXISTS `m1397_unrepeatable`.`posts` ;
 
-CREATE TABLE IF NOT EXISTS `unrepeatable`.`posts` (
+CREATE TABLE IF NOT EXISTS `m1397_unrepeatable`.`posts` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `key_id` INT UNSIGNED NOT NULL,
   `created_by` INT UNSIGNED NOT NULL,
@@ -93,30 +93,25 @@ CREATE TABLE IF NOT EXISTS `unrepeatable`.`posts` (
   PRIMARY KEY (`id`, `key_id`, `provider_id`, `created_by`),
   CONSTRAINT `FK_KEY_POSTS`
     FOREIGN KEY (`key_id`)
-    REFERENCES `unrepeatable`.`keys` (`id`)
+    REFERENCES `m1397_unrepeatable`.`keys` (`id`)
     ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `FK_PROVIDER_POSTS`
     FOREIGN KEY (`provider_id`)
-    REFERENCES `unrepeatable`.`providers` (`id`)
+    REFERENCES `m1397_unrepeatable`.`providers` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fK_USER_POSTS`
     FOREIGN KEY (`created_by`)
-    REFERENCES `unrepeatable`.`users` (`id`)
+    REFERENCES `m1397_unrepeatable`.`users` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `id_UNIQUE` ON `unrepeatable`.`posts` (`id` ASC);
+CREATE UNIQUE INDEX `id_UNIQUE` ON `m1397_unrepeatable`.`posts` (`id` ASC);
 
-CREATE UNIQUE INDEX `created_by_UNIQUE` ON `unrepeatable`.`posts` (`created_by` ASC);
+CREATE UNIQUE INDEX `created_by_UNIQUE` ON `m1397_unrepeatable`.`posts` (`created_by` ASC);
 
-CREATE INDEX `FK_KEY_POSTS_idx` ON `unrepeatable`.`posts` (`key_id` ASC);
+CREATE INDEX `FK_KEY_POSTS_idx` ON `m1397_unrepeatable`.`posts` (`key_id` ASC);
 
-CREATE INDEX `FK_PROVIDER_POSTS_idx` ON `unrepeatable`.`posts` (`provider_id` ASC);
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+CREATE INDEX `FK_PROVIDER_POSTS_idx` ON `m1397_unrepeatable`.`posts` (`provider_id` ASC);
