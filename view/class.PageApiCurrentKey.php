@@ -74,7 +74,7 @@ class PageApiCurrentKey extends AbstractApiPage
         {
             // Fetch the core properties of the key.
             $id = (int) $key['id'];
-            $key = new Key()$name = $key['name'];
+            $name = $key['name'];
             $created = (int) $key['created'];
             $disabled = (bool) $key['disabled'];
             $distance = (double) $key['distance'];
