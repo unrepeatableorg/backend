@@ -135,7 +135,8 @@ class PageApiKeys extends AbstractApiPage
         $lastId = isset($_GET['lastId']) ? (int) $_GET['lastId'] : self::DEFAULT_LAST_ID;
         $numEntries = isset($_GET['numEntries']) ? (int) $_GET['numEntries'] : self::DEFAULT_NUM_KEYS;
         // Check if the number of requested entries is larger then the allowed max.
-        $numEntries = ($numEntries > self::MAX_NUM_ENTRIES) ? self::MAX_NUM_ENTRIES;
+        if( $numEntries > self::MAX_NUM_ENTRIES )
+            $numEntries = self::MAX_NUM_ENTRIES;
         // Connect with the database server.
         $application = Application::getInstance();
         $dbHandle = $application->connectToDatabase();
